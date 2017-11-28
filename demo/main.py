@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sys
-sys.path.insert(0, "../duckling")
-
 import duckling as dkl
 
 
@@ -46,6 +43,18 @@ class GameTest:
 		tex2.y = 30
 		tex2.rotation = 30
 		self.game.stage.addChild(tex2)
+
+
+
+		## Display text field
+
+		textTexData = dkl.TextureData.fromText("Hello World! 你好世界！こんにちは世界！")
+		textTex = dkl.Texture(textTexData)
+		textTex.x = 50
+		textTex.y = 500
+		textTex.scaleX = 1.5
+		textTex.scaleY = 1.8
+		self.game.stage.addChild(textTex)
 
 
 if __name__ == "__main__":

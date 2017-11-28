@@ -9,10 +9,6 @@ from ..display.Color import Color
 from ..display.OpenGLRenderer2D import OpenGLRenderer2D
 from ..display.Sprite import Sprite
 
-from PIL import Image
-import numpy
-import array
-
 
 class Game(Object):
 	def __init__(self, w = 800, h = 600, title = "Game"):

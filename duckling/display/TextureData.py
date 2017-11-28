@@ -1,6 +1,7 @@
-import PIL
+from PIL import Image as PILImage, ImageFont as PILImageFont, ImageDraw as PILImageDraw
 
 from ..core.Object import Object
+from .Color import Color
 
 
 class TextureData(Object):
@@ -20,8 +21,19 @@ class TextureData(Object):
 		self.width = width
 		self.height = height
 
+	@staticmethod
+	def fromText(text, *, size = 12, font = "Arial Unicode.ttf", color = Color()):
+		imgFont = PILImageFont.truetype(font, size)
+
+		img = PILImage.new("RGBA", imgFont.getsize(text), (0, 0, 0, 0))
+
+		imgDraw = PILImageDraw.Draw(img)
+		imgDraw.text((0, 0), text, font = imgFont, fill=(0, 0, 0, 255))
+
+		return TextureData(img.transpose(PILImage.FLIP_TOP_BOTTOM))
+
 	def load(self, path):
-		self.image = PIL.Image.open(path).convert("RGBA").transpose(PIL.Image.FLIP_TOP_BOTTOM)
+		self.image = PILImage.open(path).convert("RGBA").transpose(PILImage.FLIP_TOP_BOTTOM)
 
 		size = self.image.size
 		if self.width == None or self.width < 0:
