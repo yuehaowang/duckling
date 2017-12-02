@@ -35,7 +35,6 @@ class TextureData(Object):
 			elif os == "Linux":
 				font = "fonts-japenese-gothic.ttf"
 
-
 		imgFont = PILImageFont.truetype(font, size)
 
 		img = PILImage.new("RGBA", imgFont.getsize(text), (0, 0, 0, 0))

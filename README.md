@@ -49,3 +49,11 @@ $ python run_demo.py  # if the default python in your system is python2, use `py
 1. Implement mouse event, keyboard event and loop event.
 2. Implement `TweenLite`.
 3. Implement `SAT`.
+
+
+
+## Issues
+
+Any questions and bug reports can be committed to the [issues](https://github.com/yuehaowang/duckling/issues) page.
+
+In addition, emailing me is available as well: *wangyuehao1999@gmail.com*.
