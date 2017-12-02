@@ -1,3 +1,5 @@
+import platform
+
 from PIL import Image as PILImage, ImageFont as PILImageFont, ImageDraw as PILImageDraw
 
 from ..core.Object import Object
@@ -22,7 +24,18 @@ class TextureData(Object):
 		self.height = height
 
 	@staticmethod
-	def fromText(text, *, size = 12, font = "Arial Unicode.ttf", color = Color()):
+	def fromText(text, *, size = 12, font = None, color = Color()):
+		if font == None:
+			os = platform.system()
+
+			if os == "Windows":
+				font = "msyh.ttf"
+			elif os == "Darwin":
+				font = "Arial Unicode.ttf"
+			elif os == "Linux":
+				font = "fonts-japenese-gothic.ttf"
+
+
 		imgFont = PILImageFont.truetype(font, size)
 
 		img = PILImage.new("RGBA", imgFont.getsize(text), (0, 0, 0, 0))

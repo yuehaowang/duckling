@@ -53,7 +53,7 @@ class GameTest:
 		textTex.x = 50
 		textTex.y = 500
 		textTex.scaleX = 1.5
-		textTex.scaleY = 1.8
+		textTex.scaleY = 1.6
 		self.game.stage.addChild(textTex)
 
 
