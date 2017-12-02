@@ -33,7 +33,7 @@ class TextureData(Object):
 			elif os == "Darwin":
 				font = "Arial Unicode.ttf"
 			elif os == "Linux":
-				font = "fonts-japenese-gothic.ttf"
+				font = "fonts-japanese-gothic.ttf"
 
 		imgFont = PILImageFont.truetype(font, size)
 
