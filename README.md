@@ -1,15 +1,13 @@
 # Duckling
 ----------
 
-An OpenGL game engine for Python.
-
-**Note: This project is under development.**
+An OpenGL based game engine for Python.
 
 
 
 ## Configuration
 
-Although this project hasn't been finished, you can follow the steps below to see the current progress if you want to have a try in advance.
+This project is still under development, but you can follow the steps below to check the current progress.
 
 ### 1, Make sure you're using *python3*
 
@@ -24,7 +22,9 @@ $ pip install PyOpenGL
 $ pip install pillow
 ```
 
-> Note: if you are using *Linux* or *MacOS*, the default *pip* may serve *python2*. Therefore, try using *pip3* instead.
+> :warning: Note: if you are using *Linux* or *MacOS*, the default *pip* may serve *python2*. Therefore, try using *pip3* instead.
+
+> :warning: Note: if your installation is stopped by 'Permission denied', retry this step with prefixed command *sudo* . 
 
 ### 3, Clone *duckling*
 
@@ -48,12 +48,12 @@ $ python run_demo.py  # if the default python in your system is python2, use `py
 
 1. Implement mouse event, keyboard event and loop event.
 2. Implement `TweenLite`.
-3. Implement `SAT`.
+3. Implement `SAT` for testing collision.
 
 
 
 ## Issues
 
-Any questions and bug reports can be committed to the [issues](https://github.com/yuehaowang/duckling/issues) page.
+Any questions, suggestions and bug reports can be committed to the [issues](https://github.com/yuehaowang/duckling/issues) page.
 
 In addition, emailing me is available as well: *wangyuehao1999@gmail.com*.
