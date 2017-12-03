@@ -1,7 +1,7 @@
-from ..core.Object import Object
+from ..events.EventDispatcher import EventDispatcher
 
 
-class DisplayObject(Object):
+class DisplayObject(EventDispatcher):
 	def __init__(self):
 		super(DisplayObject, self).__init__()
 

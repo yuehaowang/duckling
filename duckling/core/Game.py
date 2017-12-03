@@ -21,6 +21,7 @@ class Game(Object):
 		self.renderer = OpenGLRenderer2D(self)
 		self.stage = Sprite()
 		self.antialiasing = True
+		self.fps = 60
 
 		glutInit(sys.argv)
 
@@ -37,8 +38,8 @@ class Game(Object):
 		glEnable(GL_TEXTURE_2D)
 
 		glutReshapeFunc(self._onWindowResize)
-		glutDisplayFunc(self._mainLoop)
-		glutIdleFunc(self._mainLoop)
+		glutDisplayFunc(self._loopDraw)
+		glutTimerFunc(0, self._enterLoopEvent, 0)
 		glutMainLoop()
 
 	def _createWindow(self):
@@ -65,7 +66,7 @@ class Game(Object):
 	def _onWindowResize(self, newW, newH):
 		glutReshapeWindow(self.windowWidth, self.windowHeight)
 
-	def _mainLoop(self):
+	def _loopDraw(self):
 		glClear(GL_COLOR_BUFFER_BIT)
 
 		glMatrixMode(GL_MODELVIEW)
@@ -74,3 +75,9 @@ class Game(Object):
 		self.stage.display(self.renderer)
 
 		glutSwapBuffers()
+
+	def _enterLoopEvent(self, v):
+		self.stage._enterLoopEvent()
+
+		glutPostRedisplay()
+		glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)

@@ -22,6 +22,11 @@ class GameTest:
 		layer.graphics.drawVertices([dkl.Point2D(400, 0), dkl.Point2D(475, 150), dkl.Point2D(550, 0)], fillStyle = dkl.Color.fromHex("#0000EE"), strokeStyle = dkl.Color.fromHex("#000099"), lineWidth = 5)
 		self.game.stage.addChild(layer)
 
+		def moveShapes(e):
+			e.currentTarget.x += 1
+
+		layer.addEventListener(dkl.Event.ENTER_FRAME, moveShapes)
+
 
 
 		## Load and display images
