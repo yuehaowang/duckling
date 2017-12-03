@@ -11,6 +11,30 @@ class DisplayObject(EventDispatcher):
 		self.scaleX = 1
 		self.scaleY = 1
 
+	def left(self):
+		return self.x
+
+	def right(self):
+		return self.x + self.getWidth()
+
+	def top(self):
+		return self.y + self.getHeight()
+
+	def bottom(self):
+		return self.y
+
+	def getWidth(self):
+		return self._getOriginalWidth() * self.scaleX
+
+	def getHeight(self):
+		return self._getOriginalHeight() * self.scaleY
+
+	def _getOriginalWidth(self):
+		return 0
+
+	def _getOriginalHeight(self):
+		return 0
+
 	def display(self, renderer):
 		renderer.save()
 

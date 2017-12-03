@@ -10,6 +10,56 @@ class Sprite(DisplayObject):
 		self.graphics = Graphics()
 		self.childList = []
 
+	def left(self):
+		l = self.graphics.left()
+
+		for child in self.childList:
+			tempL = child.left()
+
+			if l > tempL:
+				l = tempL
+
+		return l
+
+	def right(self):
+		r = self.graphics.right()
+
+		for child in self.childList:
+			tempR = child.right()
+
+			if r < tempR:
+				r = tempR
+			
+		return r
+
+	def top(self):
+		t = self.graphics.top()
+
+		for child in self.childList:
+			tempT = child.top()
+
+			if t < tempT:
+				t = tempT
+
+		return t
+
+	def bottom(self):
+		b = self.graphics.bottom()
+
+		for child in self.childList:
+			tempB = child.bottom()
+
+			if b > tempB:
+				b = tempB
+			
+		return b
+
+	def _getOriginalWidth(self):
+		return self.right() - self.left()
+
+	def _getOriginalHeight(self):
+		return self.top() - self.bottom()
+
 	def _enterLoopEvent(self):
 		self.dispatchEvent(Event.ENTER_FRAME)
 

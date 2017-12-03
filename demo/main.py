@@ -28,7 +28,6 @@ class GameTest:
 		layer.addEventListener(dkl.Event.ENTER_FRAME, moveShapes)
 
 
-
 		## Load and display images
 
 		loader = dkl.TextureDataLoader()
@@ -50,7 +49,6 @@ class GameTest:
 		self.game.stage.addChild(tex2)
 
 
-
 		## Display text field
 
 		textTexData = dkl.TextureData.fromText("Hello World! 你好世界！こんにちは世界！")
@@ -60,6 +58,7 @@ class GameTest:
 		textTex.scaleX = 1.5
 		textTex.scaleY = 1.6
 		self.game.stage.addChild(textTex)
+
 
 
 if __name__ == "__main__":
