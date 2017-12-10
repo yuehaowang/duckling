@@ -19,7 +19,7 @@ class EventDispatcher(Object):
 	def dispatchEvent(self, eventObj, data = None):
 		for e in self._eventList:
 			if e.id == eventObj.id:
-				eve = Event(eventObj.id)
+				eve = eventObj.__class__(eventObj.id)
 				eve.currentTarget = self
 				eve.data = data
 

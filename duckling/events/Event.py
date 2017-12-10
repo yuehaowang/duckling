@@ -6,5 +6,5 @@ class Event(Object):
 		super(Event, self).__init__()
 
 		self.id = n
-		self.target = None
 		self.currentTarget = None
+		self.data = None

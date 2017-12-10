@@ -12,6 +12,14 @@ class GameTest:
 		self.game.run()
 
 	def create(self):
+		## Keyboard event test
+
+		def onKeyDown(e):
+			print(e.data["key"].decode("ascii"))
+
+		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_DOWN, onKeyDown)
+
+
 		## Draw shapes: rectangle, circle, triangle
 
 		layer = dkl.Sprite()

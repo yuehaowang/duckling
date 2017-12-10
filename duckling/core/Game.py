@@ -5,9 +5,11 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 from .Object import Object
+from .Keyboard import Keyboard
 from ..display.Color import Color
 from ..display.OpenGLRenderer2D import OpenGLRenderer2D
 from ..display.Sprite import Sprite
+from ..events.KeyboardEvent import KeyboardEvent
 
 
 class Game(Object):
@@ -40,6 +42,8 @@ class Game(Object):
 		glutReshapeFunc(self._onWindowResize)
 		glutDisplayFunc(self._loopDraw)
 		glutTimerFunc(0, self._enterLoopEvent, 0)
+		glutSpecialFunc(self._enterKeyboardEvent)
+		glutKeyboardFunc(self._enterKeyboardEvent)
 		glutMainLoop()
 
 	def _createWindow(self):
@@ -81,3 +85,6 @@ class Game(Object):
 
 		glutPostRedisplay()
 		glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
+
+	def _enterKeyboardEvent(self, key, mouseX, mouseY):
+		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key});
