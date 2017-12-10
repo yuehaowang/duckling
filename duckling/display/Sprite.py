@@ -1,6 +1,6 @@
 from .DisplayObject import DisplayObject
 from .Graphics import Graphics
-from ..events.Event import Event
+from ..events.LoopEvent import LoopEvent
 
 
 class Sprite(DisplayObject):
@@ -61,7 +61,7 @@ class Sprite(DisplayObject):
 		return self.top() - self.bottom()
 
 	def _enterLoopEvent(self):
-		self.dispatchEvent(Event.ENTER_FRAME)
+		self.dispatchEvent(LoopEvent.ENTER_FRAME)
 
 		for child in self.childList:
 			if hasattr(child, "_enterLoopEvent"):

@@ -8,5 +8,3 @@ class Event(Object):
 		self.id = n
 		self.target = None
 		self.currentTarget = None
-
-Event.ENTER_FRAME = Event("__dkl_event_enter_frame")

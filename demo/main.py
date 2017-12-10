@@ -25,7 +25,7 @@ class GameTest:
 		def moveShapes(e):
 			e.currentTarget.x += 1
 
-		layer.addEventListener(dkl.Event.ENTER_FRAME, moveShapes)
+		layer.addEventListener(dkl.LoopEvent.ENTER_FRAME, moveShapes)
 
 
 		## Load and display images
