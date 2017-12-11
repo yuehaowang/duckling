@@ -15,9 +15,12 @@ class GameTest:
 		## Keyboard event test
 
 		def onKeyDown(e):
-			print(e.data["key"].decode("ascii"))
+			print("keydown", e.data["key"])
+		def onKeyUp(e):
+			print("keyup", e.data["key"])
 
 		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_DOWN, onKeyDown)
+		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_UP, onKeyUp)
 
 
 		## Draw shapes: rectangle, circle, triangle

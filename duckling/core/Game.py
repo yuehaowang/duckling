@@ -42,8 +42,10 @@ class Game(Object):
 		glutReshapeFunc(self._onWindowResize)
 		glutDisplayFunc(self._loopDraw)
 		glutTimerFunc(0, self._enterLoopEvent, 0)
-		glutSpecialFunc(self._enterKeyboardEvent)
-		glutKeyboardFunc(self._enterKeyboardEvent)
+		glutSpecialFunc(self._enterKeyboardKeyDownEvent)
+		glutKeyboardFunc(self._enterKeyboardKeyDownEvent)
+		glutSpecialUpFunc(self._enterKeyboardKeyUpEvent)
+		glutKeyboardUpFunc(self._enterKeyboardKeyUpEvent)
 		glutMainLoop()
 
 	def _createWindow(self):
@@ -86,5 +88,8 @@ class Game(Object):
 		glutPostRedisplay()
 		glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
 
-	def _enterKeyboardEvent(self, key, mouseX, mouseY):
+	def _enterKeyboardKeyDownEvent(self, key, mouseX, mouseY):
 		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key});
+
+	def _enterKeyboardKeyUpEvent(self, key, mouseX, mouseY):
+		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key});
