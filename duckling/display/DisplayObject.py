@@ -1,7 +1,10 @@
 from ..events.EventDispatcher import EventDispatcher
+from ..geom.Matrix33 import Matrix33
 
 
 class DisplayObject(EventDispatcher):
+	PARENT_ROOT = "__dkl_parent_root"
+
 	def __init__(self):
 		super(DisplayObject, self).__init__()
 
@@ -10,6 +13,19 @@ class DisplayObject(EventDispatcher):
 		self.rotation = 0
 		self.scaleX = 1
 		self.scaleY = 1
+		self.parent = None
+
+	def getRootMatrix(self):
+		if self.parent != DisplayObject.PARENT_ROOT:
+			m = self.parent.getRootMatrix()
+		else:
+			m = Matrix33()
+
+		m.translate(self.x, self.y)
+		m.scale(self.scaleX, self.scaleY)
+		m.rotate(self.rotation)
+
+		return m
 
 	def left(self):
 		return self.x

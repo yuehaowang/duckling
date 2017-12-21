@@ -38,6 +38,8 @@ class GameTest:
 
 		layer.addEventListener(dkl.LoopEvent.ENTER_FRAME, moveShapes)
 
+		print(layer.getRootMatrix())
+
 
 		## Load and display images
 

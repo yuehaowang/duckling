@@ -8,6 +8,7 @@ from .Object import Object
 from .Keyboard import Keyboard
 from ..display.Color import Color
 from ..display.OpenGLRenderer2D import OpenGLRenderer2D
+from ..display.DisplayObject import DisplayObject
 from ..display.Sprite import Sprite
 from ..events.KeyboardEvent import KeyboardEvent
 
@@ -24,6 +25,8 @@ class Game(Object):
 		self.stage = Sprite()
 		self.antialiasing = True
 		self.fps = 60
+
+		self.stage.parent = DisplayObject.PARENT_ROOT
 
 		glutInit(sys.argv)
 
@@ -46,6 +49,7 @@ class Game(Object):
 		glutKeyboardFunc(self._enterKeyboardKeyDownEvent)
 		glutSpecialUpFunc(self._enterKeyboardKeyUpEvent)
 		glutKeyboardUpFunc(self._enterKeyboardKeyUpEvent)
+		glutMouseFunc(self._enterMouseEvent)
 		glutMainLoop()
 
 	def _createWindow(self):
@@ -89,7 +93,10 @@ class Game(Object):
 		glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
 
 	def _enterKeyboardKeyDownEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key});
+		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key})
 
 	def _enterKeyboardKeyUpEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key});
+		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key})
+
+	def _enterMouseEvent(self, button, state, mouseX, mouseY):
+		self.stage._enterMouseEvent(button, state, mouseX, mouseY)

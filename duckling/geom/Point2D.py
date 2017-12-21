@@ -7,3 +7,8 @@ class Point2D(Object):
 
 		self.x = x
 		self.y = y
+
+	def __str__(self):
+		return "Point2D(%s, %s)" % (self.x, self.y)
+
+	__repr__ = __str__

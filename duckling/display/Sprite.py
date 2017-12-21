@@ -67,6 +67,9 @@ class Sprite(DisplayObject):
 			if hasattr(child, "_enterLoopEvent"):
 				child._enterLoopEvent()
 
+	def _enterMouseEvent(self, button, state, mouseX, mouseY):
+		pass
+
 	def _drawSelf(self, renderer):
 		self.graphics.display(renderer)
 		
@@ -74,6 +77,7 @@ class Sprite(DisplayObject):
 			child.display(renderer)
 
 	def addChild(self, child):
+		child.parent = self
 		self.childList.append(child)
 
 	def removeChild(self, child):
