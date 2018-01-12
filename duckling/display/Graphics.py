@@ -177,7 +177,7 @@ class Graphics(DisplayObject):
 		for func in self._drawFuncList:
 			func(renderer)
 
-	def _isPointOn(self, x, y, m):
+	def _isMouseOn(self, x, y, m):
 		t = self.getMatrix()
 		t.add(m)
 

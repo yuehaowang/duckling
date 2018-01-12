@@ -72,7 +72,7 @@ class Sprite(DisplayObject):
 				child._enterLoopEvent()
 
 	def _enterMouseEvent(self, eve, m):
-		if self._isPointOn(eve["mouseX"], eve["mouseY"], m):
+		if self._isMouseOn(eve["mouseX"], eve["mouseY"], m):
 			if eve["state"] == 0:
 				eveType = MouseEvent.MOUSE_DOWN
 			else:
@@ -92,7 +92,7 @@ class Sprite(DisplayObject):
 
 		self._cacheIsPointOn = False
 
-	def _isPointOn(self, x, y, m):
+	def _isMouseOn(self, x, y, m):
 		if self._cacheIsPointOn:
 			return True
 
@@ -100,12 +100,12 @@ class Sprite(DisplayObject):
 		t.add(m)
 
 		for child in self.childList:
-			if child._isPointOn(x, y, t):
+			if child._isMouseOn(x, y, t):
 				self._cacheIsPointOn = True
 
 				return True
 
-		if self.graphics._isPointOn(x, y, t):
+		if self.graphics._isMouseOn(x, y, t):
 			self._cacheIsPointOn = True
 
 			return True
