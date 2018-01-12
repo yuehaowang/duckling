@@ -35,10 +35,11 @@ class GameTest:
 
 		def moveShapes(e):
 			e.currentTarget.x += 1
+		def onClick(e):
+			print(e.data["selfX"], e.data["selfY"])
 
 		layer.addEventListener(dkl.LoopEvent.ENTER_FRAME, moveShapes)
-
-		print(layer.getRootMatrix())
+		layer.addEventListener(dkl.MouseEvent.MOUSE_UP, onClick)
 
 
 		## Load and display images
@@ -71,7 +72,6 @@ class GameTest:
 		textTex.scaleX = 1.5
 		textTex.scaleY = 1.6
 		self.game.stage.addChild(textTex)
-
 
 
 if __name__ == "__main__":

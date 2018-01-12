@@ -1,4 +1,7 @@
 from ..core.Object import Object
+from .Polygon import Polygon
+from .Circle import Circle
+from .Vec2 import Vec2
 
 
 class SAT(Object):
@@ -18,13 +21,13 @@ class SAT(Object):
 			p = None
 
 			if isinstance(A, Circle):
-				c = A;
-				p = B;
+				c = A
+				p = B
 			else:
-				c = B;
-				p = A;
+				c = B
+				p = A
 
-			res = SAT.hitTestCircleAndPolygon(c, p);
+			res = SAT.hitTestCircleAndPolygon(c, p)
 
 		return res
 

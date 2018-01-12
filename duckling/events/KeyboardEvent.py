@@ -1,6 +1,3 @@
-from OpenGL.GLUT import *
-
-from ..core.Keyboard import Keyboard
 from .Event import Event
 
 

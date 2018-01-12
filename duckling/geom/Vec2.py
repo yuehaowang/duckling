@@ -1,3 +1,5 @@
+import math
+
 from ..core.Object import Object
 
 
@@ -41,6 +43,10 @@ class Vec2(Object):
 	def cross(v1, v2):
 		return v1.x * v2.y - v1.y * v2.x
 
+	@staticmethod
+	def fromPoint2D(p):
+		return Vec2(p.x, p.y)
+
 	def length(self):
 		return math.sqrt(self.x ** 2 + self.y ** 2)
 
@@ -53,4 +59,4 @@ class Vec2(Object):
 		return Vec2(self.y, -self.x)
 
 	def normR(self):
-		return Vec2(-self.y, self.x)	
+		return Vec2(-self.y, self.x)

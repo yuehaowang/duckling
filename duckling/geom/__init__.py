@@ -4,3 +4,4 @@ from .Vec2 import Vec2
 from .Rectangle import Rectangle
 from .Circle import Circle
 from .Polygon import Polygon
+from .SAT import SAT

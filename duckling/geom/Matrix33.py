@@ -9,6 +9,9 @@ class Matrix33(Object):
 
 		self.setTo(a, b, c, d, e, f, g, h, i)
 
+	def clone(self):
+		return Matrix33(self.a, self.b, self.c, self.d, self.e, self.f, self.g, self.h, self.i)
+
 	def setTo(self, a, b, c, d, e, f, g, h, i):
 		self.a = a
 		self.b = b

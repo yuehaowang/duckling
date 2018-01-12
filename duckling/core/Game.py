@@ -99,4 +99,20 @@ class Game(Object):
 		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key})
 
 	def _enterMouseEvent(self, button, state, mouseX, mouseY):
-		self.stage._enterMouseEvent(button, state, mouseX, mouseY)
+		if button == GLUT_LEFT_BUTTON:
+			button = 0
+		elif button == GLUT_RIGHT_BUTTON:
+			button = 1
+		elif button == GLUT_MIDDLE_BUTTON:
+			button = 2
+		else:
+			button = -1
+
+		eve = {
+			"button" : button,
+			"state" : state,
+			"mouseX" : mouseX,
+			"mouseY" : self.windowHeight - mouseY
+		}
+		
+		self.stage._enterMouseEvent(eve, self.stage.getMatrix())

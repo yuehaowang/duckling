@@ -1,5 +1,9 @@
 from ..events.EventDispatcher import EventDispatcher
 from ..geom.Matrix33 import Matrix33
+from ..geom.Vec2 import Vec2
+from ..geom.SAT import SAT
+from ..geom.Polygon import Polygon
+from ..geom.Circle import Circle
 
 
 class DisplayObject(EventDispatcher):
@@ -14,6 +18,7 @@ class DisplayObject(EventDispatcher):
 		self.scaleX = 1
 		self.scaleY = 1
 		self.parent = None
+		self.name = "displayObject%s" % self.objectIndex
 
 	def getRootMatrix(self):
 		if self.parent != DisplayObject.PARENT_ROOT:
@@ -21,10 +26,19 @@ class DisplayObject(EventDispatcher):
 		else:
 			m = Matrix33()
 
-		m.translate(self.x, self.y)
-		m.scale(self.scaleX, self.scaleY)
 		m.rotate(self.rotation)
+		m.scale(self.scaleX, self.scaleY)
+		m.translate(self.x, self.y)
 
+		return m
+
+	def getMatrix(self):
+		m = Matrix33()
+		
+		m.rotate(self.rotation)
+		m.scale(self.scaleX, self.scaleY)
+		m.translate(self.x, self.y)
+		
 		return m
 
 	def left(self):
@@ -50,6 +64,14 @@ class DisplayObject(EventDispatcher):
 
 	def _getOriginalHeight(self):
 		return 0
+
+	def _isPointOn(self, x, y, m):
+		m = m.clone()
+		m.add(self.getMatrix())
+
+		sh = Polygon([Vec2(self.left(), self.bottom()), Vec2(self.right(), self.bottom()), Vec2(self.right(), self.top()), Vec2(self.left(), self.top())]).getTransform(m)
+
+		return SAT.hitTest(Circle(x, y, 0), sh)
 
 	def display(self, renderer):
 		renderer.save()

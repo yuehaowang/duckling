@@ -1,5 +1,7 @@
 import math
+
 from ..core.Object import Object
+from .Vec2 import Vec2
 
 
 class Circle(Object):
@@ -27,3 +29,15 @@ class Circle(Object):
 		return "Circle(%s, %s, %s)" % (self.x, self.y, self.r)
 
 	__repr__ = __str__
+
+	def top(self):
+		return self.y + self.r
+
+	def bottom(self):
+		return self.y - self.r
+
+	def left(self):
+		return self.x - self.r
+
+	def right(self):
+		return self.x + self.r

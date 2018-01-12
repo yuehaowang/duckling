@@ -1,4 +1,5 @@
 import math
+
 from ..core.Object import Object
 
 
@@ -63,6 +64,10 @@ class Point2D(Object):
 	@staticmethod
 	def substract(v1, v2):
 		return Point2D(v1.x - v2.x, v1.y - v2.y)
+
+	@staticmethod
+	def fromVec2(v):
+		return Point2D(v.x, v.y)
 
 	def __str__(self):
 		return "Point2D(%s, %s)" % (self.x, self.y)

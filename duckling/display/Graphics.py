@@ -3,6 +3,11 @@ import math
 from .Color import Color
 from .DisplayObject import DisplayObject
 from ..geom.Point2D import Point2D
+from ..geom.Vec2 import Vec2
+from ..geom.Polygon import Polygon
+from ..geom.Circle import Circle
+from ..geom.Rectangle import Rectangle
+from ..geom.SAT import SAT
 
 
 class Graphics(DisplayObject):
@@ -11,14 +16,16 @@ class Graphics(DisplayObject):
 
 		self.arcSmoothness = 2
 		self._drawFuncList = []
-		self._verticesList = []
+		self._shapeList = []
 
 	def left(self):
 		l = None
 
-		for p in self._verticesList:
-			if l == None or l > p.x:
-				l = p.x
+		for p in self._shapeList:
+			temp = p.left()
+
+			if l == None or l > temp:
+				l = temp
 
 		if l == None:
 			return 0
@@ -28,9 +35,11 @@ class Graphics(DisplayObject):
 	def right(self):
 		r = None
 
-		for p in self._verticesList:
-			if r == None or r < p.x:
-				r = p.x
+		for p in self._shapeList:
+			temp = p.right()
+
+			if r == None or r < temp:
+				r = temp
 
 		if r == None:
 			return 0
@@ -40,9 +49,11 @@ class Graphics(DisplayObject):
 	def top(self):
 		t = None
 
-		for p in self._verticesList:
-			if t == None or t < p.y:
-				t = p.y
+		for p in self._shapeList:
+			temp = p.top()
+
+			if t == None or t < temp:
+				t = temp
 
 		if t == None:
 			return 0
@@ -52,9 +63,11 @@ class Graphics(DisplayObject):
 	def bottom(self):
 		b = None
 
-		for p in self._verticesList:
-			if b == None or b > p.y:
-				b = p.y
+		for p in self._shapeList:
+			temp = p.bottom()
+
+			if b == None or b > temp:
+				b = temp
 
 		if b == None:
 			return 0
@@ -83,8 +96,7 @@ class Graphics(DisplayObject):
 			renderer.stroke()
 
 	def drawVertices(self, vtx, *, lineWidth = 1, strokeStyle = Color(0, 0, 0, 1), fillStyle = None):
-		for v in vtx:
-			self._verticesList.append(v)
+		self._shapeList.append(Polygon(list(map(Vec2.fromPoint2D, vtx))))
 
 		def func(renderer):
 			if len(vtx) <= 1:
@@ -102,10 +114,7 @@ class Graphics(DisplayObject):
 		self._drawFuncList.append(func)
 
 	def drawRect(self, x, y, w, h, *, lineWidth = 1, strokeStyle = Color(0, 0, 0, 1), fillStyle = None):
-		self._verticesList.append(Point2D(x, y))
-		self._verticesList.append(Point2D(x + w, y))
-		self._verticesList.append(Point2D(x + w, y + h))
-		self._verticesList.append(Point2D(x, y + h))
+		self._shapeList.append(Polygon(Rectangle(x, y, w, h)))
 
 		def func(renderer):
 			renderer.moveTo(x, y)
@@ -119,8 +128,7 @@ class Graphics(DisplayObject):
 		self._drawFuncList.append(func)
 
 	def drawLine(self, x0, y0, x1, y1, *, lineWidth = 1, strokeStyle = Color(0, 0, 0, 1)):
-		self._verticesList.append(Point2D(x0, y0))
-		self._verticesList.append(Point2D(x1, y1))
+		self._shapeList.append(Polygon([Vec2(x0, y0), Vec2(x1, y1)]))
 
 		def func(renderer):
 			renderer.moveTo(x0, y0)
@@ -133,10 +141,8 @@ class Graphics(DisplayObject):
 		self._drawFuncList.append(func)
 
 	def drawArc(self, x0, y0, r, *, beginAngle = 0, endAngle = 360, lineWidth = 1, strokeStyle = Color(0, 0, 0, 1), fillStyle = None):
-		self._verticesList.append(Point2D(x0, y0))
-		self._verticesList.append(Point2D(x0 + r, y0))
-		self._verticesList.append(Point2D(x0 + r, y0 + r))
-		self._verticesList.append(Point2D(x0, y0 + r))
+		if abs(endAngle - beginAngle) >= 360:
+			self._shapeList.append(Circle(x0, y0, r))
 
 		beginAngle, endAngle = math.radians(beginAngle % 360), math.radians(endAngle % 360)
 		w = self.arcSmoothness / r
@@ -170,3 +176,17 @@ class Graphics(DisplayObject):
 	def _drawSelf(self, renderer):
 		for func in self._drawFuncList:
 			func(renderer)
+
+	def _isPointOn(self, x, y, m):
+		m = m.clone()
+		m.add(self.getMatrix())
+
+		pt = Circle(x, y, 0)
+
+		for p in self._shapeList:
+			sh = p.getTransform(m)
+
+			if SAT.hitTest(sh, pt):
+				return True
+
+		return False

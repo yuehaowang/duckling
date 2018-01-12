@@ -1,14 +1,18 @@
 from .DisplayObject import DisplayObject
 from .Graphics import Graphics
 from ..events.LoopEvent import LoopEvent
+from ..events.MouseEvent import MouseEvent
 
 
 class Sprite(DisplayObject):
 	def __init__(self):
 		super(Sprite, self).__init__()
 
-		self.graphics = Graphics()
+		self._cacheIsPointOn = False
 		self.childList = []
+		self.shapes = []
+		self.graphics = Graphics()
+		self.graphics.parent = self
 
 	def left(self):
 		l = self.graphics.left()
@@ -67,14 +71,55 @@ class Sprite(DisplayObject):
 			if hasattr(child, "_enterLoopEvent"):
 				child._enterLoopEvent()
 
-	def _enterMouseEvent(self, button, state, mouseX, mouseY):
-		pass
+	def _enterMouseEvent(self, eve, m):
+		if self._isPointOn(eve["mouseX"], eve["mouseY"], m):
+			if eve["state"] == 0:
+				eveType = MouseEvent.MOUSE_DOWN
+			else:
+				eveType = MouseEvent.MOUSE_UP
+
+			self.dispatchEvent(eveType, data={
+				"mouseX" : eve["mouseX"],
+				"mouseY" : eve["mouseY"],
+				"selfX" : eve["mouseX"] - m.c - self.x,
+				"selfY" : eve["mouseY"] - m.f - self.y,
+				"button" : eve["button"]
+			})
+
+		for child in self.childList:
+			if isinstance(child, Sprite):
+				child._enterMouseEvent(eve, m)
+
+		self._cacheIsPointOn = False
+
+	def _isPointOn(self, x, y, m):
+		if self._cacheIsPointOn:
+			return True
+
+		m = m.clone()
+		m.add(self.getMatrix())
+
+		for child in self.childList:
+			if child._isPointOn(x, y, m):
+				self._cacheIsPointOn = True
+
+				return True
+
+		if self.graphics._isPointOn(x, y, m):
+			self._cacheIsPointOn = True
+
+			return True
+
+		return False
 
 	def _drawSelf(self, renderer):
 		self.graphics.display(renderer)
 		
 		for child in self.childList:
 			child.display(renderer)
+
+	def addShape(self, sh):
+		self.shapes.append(sh)
 
 	def addChild(self, child):
 		child.parent = self

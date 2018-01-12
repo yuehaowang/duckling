@@ -79,3 +79,51 @@ class Polygon(Object):
 		return "Polygon(%s)" % self.vertices
 
 	__repr__ = __str__
+
+	def left(self):
+		l = None
+
+		for p in self.vertices:
+			if l == None or l > p.x:
+				l = p.x
+
+		if l == None:
+			return 0
+
+		return l
+
+	def right(self):
+		r = None
+
+		for p in self.vertices:
+			if r == None or r < p.x:
+				r = p.x
+
+		if r == None:
+			return 0
+			
+		return r
+
+	def top(self):
+		t = None
+
+		for p in self.vertices:
+			if t == None or t < p.y:
+				t = p.y
+
+		if t == None:
+			return 0
+			
+		return t
+
+	def bottom(self):
+		b = None
+
+		for p in self.vertices:
+			if b == None or b > p.y:
+				b = p.y
+
+		if b == None:
+			return 0
+			
+		return b
