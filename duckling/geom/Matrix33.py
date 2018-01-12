@@ -46,10 +46,10 @@ class Matrix33(Object):
 		c = m.a * self.c + m.b * self.f + m.c * self.i
 		d = m.d * self.a + m.e * self.d + m.f * self.g
 		e = m.d * self.b + m.e * self.e + m.f * self.h
-		f = m.d * self.e + m.e * self.f + m.f * self.i
+		f = m.d * self.c + m.e * self.f + m.f * self.i
 		g = m.g * self.a + m.h * self.d + m.i * self.g
 		h = m.g * self.b + m.h * self.e + m.i * self.h
-		i = m.g * self.g + m.h * self.f + m.i * self.i
+		i = m.g * self.c + m.h * self.f + m.i * self.i
 
 		self.setTo(a, b, c, d, e, f, g, h, i)
 

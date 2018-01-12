@@ -21,22 +21,23 @@ class DisplayObject(EventDispatcher):
 		self.name = "displayObject%s" % self.objectIndex
 
 	def getRootMatrix(self):
-		if self.parent != DisplayObject.PARENT_ROOT:
-			m = self.parent.getRootMatrix()
-		else:
-			m = Matrix33()
+		p = self
+		m = Matrix33()
 
-		m.rotate(self.rotation)
-		m.scale(self.scaleX, self.scaleY)
-		m.translate(self.x, self.y)
+		while p and p != DisplayObject.PARENT_ROOT:
+			m.scale(p.scaleX, p.scaleY)
+			m.rotate(p.rotation)
+			m.translate(p.x, p.y)
 
+			p = p.parent
+		
 		return m
 
 	def getMatrix(self):
 		m = Matrix33()
 		
-		m.rotate(self.rotation)
 		m.scale(self.scaleX, self.scaleY)
+		m.rotate(self.rotation)
 		m.translate(self.x, self.y)
 		
 		return m
@@ -66,10 +67,10 @@ class DisplayObject(EventDispatcher):
 		return 0
 
 	def _isPointOn(self, x, y, m):
-		m = m.clone()
-		m.add(self.getMatrix())
+		t = self.getMatrix()
+		t.add(m)
 
-		sh = Polygon([Vec2(self.left(), self.bottom()), Vec2(self.right(), self.bottom()), Vec2(self.right(), self.top()), Vec2(self.left(), self.top())]).getTransform(m)
+		sh = Polygon([Vec2(0, 0), Vec2(self._getOriginalWidth(), 0), Vec2(self._getOriginalWidth(), self._getOriginalHeight()), Vec2(0, self._getOriginalHeight())]).getTransform(t)
 
 		return SAT.hitTest(Circle(x, y, 0), sh)
 
@@ -77,8 +78,8 @@ class DisplayObject(EventDispatcher):
 		renderer.save()
 
 		renderer.translate(self.x, self.y)
-		renderer.scale(self.scaleX, self.scaleY)
 		renderer.rotate(self.rotation)
+		renderer.scale(self.scaleX, self.scaleY)
 
 		self._drawSelf(renderer)
 

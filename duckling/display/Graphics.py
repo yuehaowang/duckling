@@ -178,8 +178,8 @@ class Graphics(DisplayObject):
 			func(renderer)
 
 	def _isPointOn(self, x, y, m):
-		m = m.clone()
-		m.add(self.getMatrix())
+		t = self.getMatrix()
+		t.add(m)
 
 		pt = Circle(x, y, 0)
 

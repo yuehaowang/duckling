@@ -96,16 +96,16 @@ class Sprite(DisplayObject):
 		if self._cacheIsPointOn:
 			return True
 
-		m = m.clone()
-		m.add(self.getMatrix())
+		t = self.getMatrix()
+		t.add(m)
 
 		for child in self.childList:
-			if child._isPointOn(x, y, m):
+			if child._isPointOn(x, y, t):
 				self._cacheIsPointOn = True
 
 				return True
 
-		if self.graphics._isPointOn(x, y, m):
+		if self.graphics._isPointOn(x, y, t):
 			self._cacheIsPointOn = True
 
 			return True

@@ -14,12 +14,10 @@ class GameTest:
 	def create(self):
 		## Keyboard event test
 
-		def onKeyDown(e):
-			print("keydown", e.data["key"])
 		def onKeyUp(e):
-			print("keyup", e.data["key"])
+			if e.data["key"] == dkl.Keyboard.ESC:
+				exit(0)
 
-		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_DOWN, onKeyDown)
 		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_UP, onKeyUp)
 
 
@@ -35,8 +33,10 @@ class GameTest:
 
 		def moveShapes(e):
 			e.currentTarget.x += 1
+			e.currentTarget.rotation += 0.5
+
 		def onClick(e):
-			print(e.data["selfX"], e.data["selfY"])
+			print("Click at (%s, %s)" % (e.data["selfX"], e.data["selfY"]))
 
 		layer.addEventListener(dkl.LoopEvent.ENTER_FRAME, moveShapes)
 		layer.addEventListener(dkl.MouseEvent.MOUSE_UP, onClick)
@@ -49,9 +49,9 @@ class GameTest:
 			{"name" : "yaxi_logo", "path" : "./yaxi_logo.png"},
 			{"name" : "avatar", "path" : "./avatar.png"}
 		])
-		
+
 		tex1 = dkl.Texture(loader.get("avatar"))
-		tex1.x = tex1.y = 30
+		tex1.x = tex1.y = 60
 		tex1.textureData.x = tex1.textureData.y = 30
 		tex1.textureData.width = tex1.textureData.height = 100
 		self.game.stage.addChild(tex1)
