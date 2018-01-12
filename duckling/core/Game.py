@@ -49,7 +49,8 @@ class Game(Object):
 		glutKeyboardFunc(self._enterKeyboardKeyDownEvent)
 		glutSpecialUpFunc(self._enterKeyboardKeyUpEvent)
 		glutKeyboardUpFunc(self._enterKeyboardKeyUpEvent)
-		glutMouseFunc(self._enterMouseEvent)
+		glutMouseFunc(self._enterMouseButtonEvent)
+		glutPassiveMotionFunc(self._enterMouseMotionEvent)
 		glutMainLoop()
 
 	def _createWindow(self):
@@ -98,7 +99,7 @@ class Game(Object):
 	def _enterKeyboardKeyUpEvent(self, key, mouseX, mouseY):
 		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key})
 
-	def _enterMouseEvent(self, button, state, mouseX, mouseY):
+	def _enterMouseButtonEvent(self, button, state, mouseX, mouseY):
 		if button == GLUT_LEFT_BUTTON:
 			button = 0
 		elif button == GLUT_RIGHT_BUTTON:
@@ -115,4 +116,12 @@ class Game(Object):
 			"mouseY" : self.windowHeight - mouseY
 		}
 		
+		self.stage._enterMouseEvent(eve, self.stage.getMatrix())
+
+	def _enterMouseMotionEvent(self, mouseX, mouseY):
+		eve = {
+			"mouseX" : mouseX,
+			"mouseY" : self.windowHeight - mouseY
+		}
+
 		self.stage._enterMouseEvent(eve, self.stage.getMatrix())

@@ -73,18 +73,24 @@ class Sprite(DisplayObject):
 
 	def _enterMouseEvent(self, eve, m):
 		if self._isMouseOn(eve["mouseX"], eve["mouseY"], m):
-			if eve["state"] == 0:
-				eveType = MouseEvent.MOUSE_DOWN
-			else:
-				eveType = MouseEvent.MOUSE_UP
-
-			self.dispatchEvent(eveType, data={
+			eveData = {
 				"mouseX" : eve["mouseX"],
 				"mouseY" : eve["mouseY"],
 				"selfX" : eve["mouseX"] - m.c - self.x,
-				"selfY" : eve["mouseY"] - m.f - self.y,
-				"button" : eve["button"]
-			})
+				"selfY" : eve["mouseY"] - m.f - self.y
+			}
+
+			if "button" in eve and "state" in eve:
+				if eve["state"] == 0:
+					eveType = MouseEvent.MOUSE_DOWN
+				else:
+					eveType = MouseEvent.MOUSE_UP
+
+				eveData["button"] = eve["button"]
+			else:
+				eveType = MouseEvent.MOUSE_MOVE
+
+			self.dispatchEvent(eveType, data=eveData)
 
 		for child in self.childList:
 			if isinstance(child, Sprite):
