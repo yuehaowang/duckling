@@ -25,9 +25,7 @@ class DisplayObject(EventDispatcher):
 		m = Matrix33()
 
 		while p and p != DisplayObject.PARENT_ROOT:
-			m.scale(p.scaleX, p.scaleY)
-			m.rotate(p.rotation)
-			m.translate(p.x, p.y)
+			m.add(p.getMatrix())
 
 			p = p.parent
 		
