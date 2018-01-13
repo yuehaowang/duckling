@@ -26,6 +26,8 @@ $ pip install pillow
 
 > :warning: Note: if your installation is stopped by 'Permission denied', retry this step with prefixed command *sudo* . 
 
+> :warning: Note: if you are a 64-bit Windows user, choose an appropriate PyOpenGL package [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl), then download and install it using `pip install PyOpenGL‑A.B.C‑cpXX‑cpXXm‑win_amd64.whl`. Official PyOpenGL package doesn't work on 64-bit Windows.
+
 ### 3, Clone *duckling*
 
 Clone *duckling* to your local file system by using *git*:
