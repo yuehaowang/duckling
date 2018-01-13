@@ -29,7 +29,7 @@ class TextureData(Object):
 			os = platform.system()
 
 			if os == "Windows":
-				font = "msyh.ttf"
+				font = "msyh.ttc"
 			elif os == "Darwin":
 				font = "Arial Unicode.ttf"
 			elif os == "Linux":

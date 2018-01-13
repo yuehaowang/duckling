@@ -55,7 +55,7 @@ class Game(Object):
 
 	def _createWindow(self):
 		glutInitWindowSize(self.windowWidth, self.windowHeight)
-		glutCreateWindow(self.windowTitle)
+		glutCreateWindow(self.windowTitle.encode("utf-8"))
 
 	def _coordinateProjection(self):
 		w, h = self.windowWidth, self.windowHeight
