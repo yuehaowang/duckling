@@ -24,7 +24,7 @@ class TextureData(Object):
 		self.height = height
 
 	@staticmethod
-	def fromText(text, *, size = 12, font = None, color = Color()):
+	def fromText(text, *, size = 12, font = None, color = Color(), antialiasing = True):
 		if font == None:
 			os = platform.system()
 
@@ -40,6 +40,8 @@ class TextureData(Object):
 		img = PILImage.new("RGBA", imgFont.getsize(text), (0, 0, 0, 0))
 
 		imgDraw = PILImageDraw.Draw(img)
+		if not antialiasing:
+			imgDraw.fontmode = "1"
 		imgDraw.text((0, 0), text, font = imgFont, fill=(0, 0, 0, 255))
 
 		return TextureData(img.transpose(PILImage.FLIP_TOP_BOTTOM))
