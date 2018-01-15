@@ -172,6 +172,7 @@ class Graphics(DisplayObject):
 
 	def clear(self):
 		self._drawFuncList.clear()
+		self._shapeList.clear()
 
 	def _drawSelf(self, renderer):
 		for func in self._drawFuncList:
