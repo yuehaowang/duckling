@@ -1,8 +1,9 @@
  #! /usr/bin/env python3
 
-import runpy, sys, os
+import runpy, sys, os, logging
 
 import duckling
+
 
 dklPath = os.path.split(os.path.abspath(sys.argv[0]))[0]
 
@@ -14,5 +15,7 @@ else:
 		sys.path.insert(0, dklPath)
 
 		runpy.run_path("./main.py", run_name = "__main__")
-	except:
-		print("Cannot run '%s'." % sys.argv[1])
+	except Exception as e:
+		logging.exception(e)
+
+		print("\nCannot run '%s' because of the exception above.\n" % sys.argv[1])
