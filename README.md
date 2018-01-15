@@ -26,7 +26,7 @@ $ pip install pillow
 
 > :warning: Note: if your installation is stopped by 'Permission denied', retry this step with prefixed command *sudo* . 
 
-> :warning: Note: if you are a 64-bit Windows user, choose an appropriate PyOpenGL package [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl), then download and install it using `pip install PyOpenGL‑A.B.C‑cpXX‑cpXXm‑win_amd64.whl`. Official PyOpenGL package doesn't work on 64-bit Windows.
+> :warning: Note: if you are a Windows user, choose an appropriate PyOpenGL package [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl), then download and install it using `pip install PyOpenGL‑A.B.C‑cpXX‑cpXXm‑win_amd64.whl`. Official PyOpenGL package doesn't work satisfyingly on modern Windows.
 
 ### 3, Clone *duckling*
 
@@ -41,7 +41,7 @@ $ git clone https://github.com/yuehaowang/duckling.git
 Then, run a simple demo to test whether you have successfully finished those steps above:
 ```bash
 $ cd ./duckling
-$ python run_demo.py  # if the default python in your system is python2, use `python3 run_demo.py` instead.
+$ python run.py demo.hello_world  # if the default python in your system is python2, use `python3 run.py demo.hello_world` instead.
 ```
 
 
