@@ -65,7 +65,7 @@ class GameTest:
 
 		## Display text field
 
-		textTexData = dkl.TextureData.fromText("Hello World! 你好世界！こんにちは世界！", antialiasing=False)
+		textTexData = dkl.TextureData.fromText("Hello World! 你好世界！こんにちは世界！", color = dkl.Color.fromHex("#FF0000"), antialiasing = False)
 		textTex = dkl.Texture(textTexData)
 		textTex.x = 50
 		textTex.y = 500

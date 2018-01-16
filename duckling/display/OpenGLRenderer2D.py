@@ -76,8 +76,7 @@ class OpenGLRenderer2D(Object):
 			glLineWidth(lw)
 
 	def setColor(self, color):
-		if color != None:
-			glColor4f(*color.toList())
+		glColor4f(*color.toList())
 
 	def end(self):
 		self.pathList.clear()
