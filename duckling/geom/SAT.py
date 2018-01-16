@@ -1,13 +1,9 @@
-from ..core.Object import Object
 from .Polygon import Polygon
 from .Circle import Circle
 from .Vec2 import Vec2
 
 
-class SAT(Object):
-	def __init__(self):
-		raise Exception("SAT cannot be instantiated.")
-
+class SAT(object):
 	@staticmethod
 	def hitTest(A, B):
 		res = None
