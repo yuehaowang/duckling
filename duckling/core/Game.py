@@ -24,6 +24,7 @@ class Game(Object):
 		self.renderer = OpenGLRenderer2D(self)
 		self.stage = Sprite()
 		self.antialiasing = True
+		self.enableDoubleBuffer = True
 		self.fps = 60
 
 		self.stage.parent = DisplayObject.PARENT_ROOT
@@ -31,7 +32,7 @@ class Game(Object):
 		glutInit(sys.argv)
 
 	def run(self):
-		glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE)
+		glutInitDisplayMode(GLUT_RGBA | (GLUT_DOUBLE if self.enableDoubleBuffer else GLUT_SINGLE))
 
 		self._createWindow()
 
@@ -85,7 +86,10 @@ class Game(Object):
 
 		self.stage.display(self.renderer)
 
-		glutSwapBuffers()
+		if self.enableDoubleBuffer:
+			glutSwapBuffers()
+		else:
+			glFlush()
 
 	def _enterLoopEvent(self, v):
 		self.stage._enterLoopEvent()
