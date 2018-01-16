@@ -1,0 +1,13 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_4" d="m136,222c100,0 96,-81 96,-81c0,0 -180,-2 -180,-2c0,0 -1,14 -1,14c0,0 2,15 2,15c0,0 8,14 8,14c0,0 10,13 10,13c0,0 13,12 13,12c0,0 13,7 13,7c0,0 12,4 12,4c0,0 27,4 27,4z" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#000000" fill="#000000"/>
+  <rect stroke="#000000" id="svg_5" height="102" width="32.000001" y="36" x="52" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="4" fill="#000000"/>
+  <rect transform="rotate(-32.905242919921875 35.49999999999995,105.49999999999999) " id="svg_7" height="9" width="33" y="101" x="19" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="3" stroke="#000000" fill="#000000"/>
+  <rect transform="rotate(24.075498580932617 34.5,81.5) " id="svg_8" height="9" width="33" y="77" x="18" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="3" stroke="#000000" fill="#000000"/>
+  <ellipse ry="6" rx="6" id="svg_9" cy="64" cx="62" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="3" stroke="#ff5400" fill="#000000"/>
+  <line id="svg_21" y2="189" x2="106" y1="155" x1="106" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10" stroke="#ff5400" fill="none"/>
+  <line id="svg_22" y2="188" x2="161" y1="188" x1="101" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="10" stroke="#ff5400" fill="none"/>
+ </g>
+</svg>
