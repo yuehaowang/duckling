@@ -8,7 +8,7 @@ class Sprite(DisplayObject):
 	def __init__(self):
 		super(Sprite, self).__init__()
 
-		self._cacheIsPointOn = False
+		self._cacheIsMouseOn = False
 		self.childList = []
 		self.shapes = []
 		self.graphics = Graphics()
@@ -96,10 +96,10 @@ class Sprite(DisplayObject):
 				if isinstance(child, Sprite):
 					child._enterMouseEvent(eve, m)
 
-		self._cacheIsPointOn = False
+		self._cacheIsMouseOn = False
 
 	def _isMouseOn(self, x, y, m):
-		if self._cacheIsPointOn:
+		if self._cacheIsMouseOn:
 			return True
 
 		t = self.getMatrix()
@@ -107,12 +107,12 @@ class Sprite(DisplayObject):
 
 		for child in self.childList:
 			if child._isMouseOn(x, y, t):
-				self._cacheIsPointOn = True
+				self._cacheIsMouseOn = True
 
 				return True
 
 		if self.graphics._isMouseOn(x, y, t):
-			self._cacheIsPointOn = True
+			self._cacheIsMouseOn = True
 
 			return True
 
