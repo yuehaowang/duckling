@@ -9,28 +9,34 @@ class GluttonousSnake:
 		self.blockSize = 16
 		self.blockNum = 21
 
-		self.snake = [(10, 10), (10, 11)]
-		self.direction = 0  # 0 - up; 1 - down; 2 - right; 3 - left;
-		self.length = 2
-
-		self.target = None
-
-		self.playing = True
-		self.isGameOver = False
-		self.score = 0
-
 		self.game = dkl.Game(self.blockNum * self.blockSize, self.blockNum * self.blockSize, "Gluttonous Snake")
 		self.game.fps = 6
 		self.create()
 		self.game.run()
 
 	def create(self):
+		self.score = 0
+		self.playing = True
+		self.isGameOver = False
+
+		self.target = None
+
+		self.snake = [(10, 10), (10, 9)]
+		self.direction = 0  # 0 - up; 1 - down; 2 - right; 3 - left;
+
+		self.initLayers()
+		self.initEvents()
+		self.initScoreTex()
+
+	def initLayers(self):
 		self.stageLayer = dkl.Sprite()
 		self.game.stage.addChild(self.stageLayer)
 
+	def initEvents(self):
 		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_DOWN, self.onKeyDown)
 		self.stageLayer.addEventListener(dkl.LoopEvent.ENTER_FRAME, self.mainLoop)
 
+	def initScoreTex(self):
 		self.scoreTex = dkl.Texture()
 		self.scoreTex.x = self.scoreTex.y = 10
 		self.stageLayer.addChild(self.scoreTex)
@@ -46,8 +52,8 @@ class GluttonousSnake:
 			self.playing = not self.playing
 
 		if self.isGameOver:
-			if d["key"] == dkl.Keyboard.RETURN:
-				self.isGameOver = False
+			if d["key"] == dkl.Keyboard.ENTER:
+				self.game.stage.destroy()
 				self.create()
 
 		if self.playing:
@@ -77,8 +83,6 @@ class GluttonousSnake:
 					break
 
 	def moveSnake(self):
-		self.snake.pop()
-
 		tx = self.snake[0][0]
 		ty = self.snake[0][1]
 
@@ -98,6 +102,7 @@ class GluttonousSnake:
 			self.eatFood()
 
 		self.snake.insert(0, (tx, ty))
+		self.snake.pop()
 
 	def draw(self):
 		self.stageLayer.graphics.clear()
