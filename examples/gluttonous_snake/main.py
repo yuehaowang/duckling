@@ -16,6 +16,7 @@ class GluttonousSnake:
 		self.target = None
 
 		self.playing = True
+		self.isGameOver = False
 		self.score = 0
 
 		self.game = dkl.Game(self.blockNum * self.blockSize, self.blockNum * self.blockSize, "Gluttonous Snake")
@@ -43,6 +44,11 @@ class GluttonousSnake:
 			exit(0)
 		elif d["key"] == dkl.Keyboard.SPACE:
 			self.playing = not self.playing
+
+		if self.isGameOver:
+			if d["key"] == dkl.Keyboard.RETURN:
+				self.isGameOver = False
+				self.create()
 
 		if self.playing:
 			if d["key"] == dkl.Keyboard.UP:
@@ -127,6 +133,7 @@ class GluttonousSnake:
 
 	def gameOver(self):
 		self.playing = False
+		self.isGameOver = True
 
 		textTex = dkl.Texture(dkl.TextureData.fromText("Game Over", size=50))
 		textTex.x = (self.game.windowWidth - textTex.getWidth()) / 2

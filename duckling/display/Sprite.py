@@ -137,3 +137,11 @@ class Sprite(DisplayObject):
 				self.childList.pop(i)
 
 				break
+
+	def removeAllChildren(self):
+		self.childList.clear()
+
+	def destroy(self):
+		self.removeAllChildren()
+		self.graphics.clear()
+		self.removeAllEventListeners()

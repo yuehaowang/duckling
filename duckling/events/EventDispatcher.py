@@ -16,6 +16,9 @@ class EventDispatcher(Object):
 			if e.id == eventObj.id and self._eventList[e] == callback:
 				self_eventList.pop(e)
 
+	def removeAllEventListeners(self):
+		self._eventList.clear()
+
 	def dispatchEvent(self, eventObj, data = None):
 		for e in self._eventList:
 			if e.id == eventObj.id:
