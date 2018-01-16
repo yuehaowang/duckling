@@ -92,9 +92,9 @@ class Sprite(DisplayObject):
 
 			self.dispatchEvent(eveType, data=eveData)
 
-		for child in self.childList:
-			if isinstance(child, Sprite):
-				child._enterMouseEvent(eve, m)
+			for child in self.childList:
+				if isinstance(child, Sprite):
+					child._enterMouseEvent(eve, m)
 
 		self._cacheIsPointOn = False
 
