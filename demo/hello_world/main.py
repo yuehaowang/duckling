@@ -5,8 +5,6 @@ import duckling as dkl
 
 class GameTest:
 	def __init__(self):
-		super(GameTest, self).__init__()
-		
 		self.game = dkl.Game(800, 600, "Test")
 		self.create()
 		self.game.run()

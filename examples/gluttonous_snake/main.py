@@ -4,8 +4,6 @@ import duckling as dkl
 
 class GluttonousSnake:
 	def __init__(self):
-		super(GluttonousSnake, self).__init__()
-
 		self.blockSize = 16
 		self.blockNum = 21
 
