@@ -11,6 +11,9 @@ class Sprite(DisplayObject):
 		self._cacheIsMouseOn = False
 		self.childList = []
 		self.shapes = []
+		self.mouseEnabled = True
+		self.mouseChildren = True
+		self.mouseShelter = True
 		self.graphics = Graphics()
 		self.graphics.parent = self
 
@@ -72,7 +75,12 @@ class Sprite(DisplayObject):
 				child._enterLoopEvent()
 
 	def _enterMouseEvent(self, eve, m):
+		isOn = False
+
 		if self._isMouseOn(eve["mouseX"], eve["mouseY"], m):
+			if self.mouseShelter:
+				isOn = True
+
 			eveData = {
 				"mouseX" : eve["mouseX"],
 				"mouseY" : eve["mouseY"],
@@ -90,13 +98,18 @@ class Sprite(DisplayObject):
 			else:
 				eveType = MouseEvent.MOUSE_MOVE
 
-			self.dispatchEvent(eveType, data=eveData)
+			if self.mouseEnabled:
+				self.dispatchEvent(eveType, data=eveData)
 
-			for child in self.childList:
-				if isinstance(child, Sprite):
-					child._enterMouseEvent(eve, m)
+			if self.mouseChildren:
+				for child in self.childList[::-1]:
+					if isinstance(child, Sprite):
+						if child._enterMouseEvent(eve, m):
+							break
 
 		self._cacheIsMouseOn = False
+
+		return isOn
 
 	def _isMouseOn(self, x, y, m):
 		if self._cacheIsMouseOn:
