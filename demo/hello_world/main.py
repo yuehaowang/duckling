@@ -34,7 +34,7 @@ class GameTest:
 			e.currentTarget.rotation += 0.5
 
 		def onClick(e):
-			print("Click at (%s, %s)" % (e.data["selfX"], e.data["selfY"]))
+			dkl.log("Click at (%s, %s)" % (e.data["selfX"], e.data["selfY"]))
 
 		layer.addEventListener(dkl.LoopEvent.ENTER_FRAME, moveShapes)
 		layer.addEventListener(dkl.MouseEvent.MOUSE_UP, onClick)
