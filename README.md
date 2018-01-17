@@ -19,7 +19,7 @@ Before using *duckling*, install *PyOpenGL* and *Pillow* at first because *duckl
 
 ```bash
 $ pip install PyOpenGL
-$ pip install pillow
+$ pip install Pillow
 ```
 
 > :warning: Note: if you are using *Linux* or *MacOS*, the default *pip* may serve *python2*. Therefore, try using *pip3* instead.
