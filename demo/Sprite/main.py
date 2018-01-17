@@ -4,7 +4,7 @@ import duckling as dkl
 
 
 def onClick(e):
-	print("Click %s" % e.currentTarget.name)
+	dkl.log("Click %s" % e.currentTarget.name)
 
 def demoInit():
 	# Layer1
@@ -36,6 +36,6 @@ def demoInit():
 	game.stage.addChild(layer3)
 
 if __name__ == "__main__":
-	game = dkl.Game(800, 600, "Sprite Demo")
+	game = dkl.Game(570, 450, "Sprite Demo")
 	demoInit()
 	game.run()

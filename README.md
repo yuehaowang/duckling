@@ -19,7 +19,7 @@ Before using *duckling*, install *PyOpenGL* and *Pillow* at first because *duckl
 
 ```bash
 $ pip install PyOpenGL
-$ pip install pillow
+$ pip install Pillow
 ```
 
 > :warning: Note: if you are using *Linux* or *MacOS*, the default *pip* may serve *python2*. Therefore, try using *pip3* instead.
@@ -41,16 +41,16 @@ $ git clone https://github.com/yuehaowang/duckling.git
 Then, run a simple demo to test whether you have successfully finished those steps above:
 ```bash
 $ cd ./duckling
-$ python run.py demo.hello_world  # if the default python in your system is python2, use `python3 run.py demo.hello_world` instead.
+$ python run.py demo/hello_world/  # if the default python in your system is python2, use `python3 run.py demo/hello_world/` instead.
 ```
 
 
 
 ## To-do
 
-1. Implement mouse event, keyboard event and loop event.
-2. Implement `TweenLite`.
-3. Implement `SAT` for testing collision.
+1. :white_square_button: Implement mouse event, keyboard event and loop event.
+2. :white_medium_square: Implement `TweenLite`.
+3. :white_medium_square: Implement `SAT` for testing collision.
 
 
 
