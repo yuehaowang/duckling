@@ -11,7 +11,7 @@ if len(sys.argv) < 2:
 	print("Missing a parameter.")
 else:
 	try:
-		os.chdir(os.path.normpath(os.path.join(dklPath, "/".join(sys.argv[1].split(".")))))
+		os.chdir(os.path.normpath(os.path.join(dklPath, sys.argv[1])))
 		sys.path.insert(0, dklPath)
 
 		runpy.run_path("./main.py", run_name = "__main__")
