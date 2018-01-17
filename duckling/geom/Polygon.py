@@ -51,7 +51,8 @@ class Polygon(Object):
 		maxi = None
 
 		for p in vtx:
-			pro = Vec2.dot(p, axis) / axis.length()
+			l = axis.length()
+			pro = (Vec2.dot(p, axis) / l) if l > 0 else 1e8
 
 			if mini == None or pro < mini:
 				mini = pro

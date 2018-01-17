@@ -48,7 +48,12 @@ class Point2D(Object):
 		return self.x == t.x and self.y == t.y
 
 	def normalize(self, t):
-		scale = t / self.length()
+		l = self.length()
+
+		if l <= 0:
+			return
+
+		scale = t / l
 
 		self.x *= scale
 		self.y *= scale

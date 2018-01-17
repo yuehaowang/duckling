@@ -145,7 +145,6 @@ class Graphics(DisplayObject):
 			self._shapeList.append(Circle(x0, y0, r))
 
 		beginAngle, endAngle = math.radians(beginAngle % 360), math.radians(endAngle % 360)
-		w = self.arcSmoothness / r
 
 		if beginAngle < 0:
 			beginAngle += math.pi * 2
@@ -154,6 +153,8 @@ class Graphics(DisplayObject):
 
 		if endAngle <= beginAngle:
 			endAngle += math.pi * 2
+
+		w = (self.arcSmoothness / r) if r > 0 else (endAngle - beginAngle)
 
 		def func(renderer):
 			renderer.moveTo(x0 + r * math.cos(beginAngle), y0 + r * math.sin(beginAngle))

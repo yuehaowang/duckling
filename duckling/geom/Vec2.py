@@ -53,7 +53,10 @@ class Vec2(Object):
 	def normalize(self):
 		l = self.length()
 
-		return Vec2(self.x / l, self.y / l)
+		if l == 0:
+			return Vec2(self.x / l, self.y / l)
+		else:
+			return Vec2()
 
 	def normL(self):
 		return Vec2(self.y, -self.x)

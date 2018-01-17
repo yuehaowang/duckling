@@ -21,7 +21,8 @@ class Circle(Object):
 		return Circle(v1[0], v1[1], math.sqrt(dx ** 2 + dy ** 2))
 
 	def getProjection(self, axis):
-		pro = Vec2.dot(Vec2(self.x, self.y), axis) / axis.length()
+		l = axis.length()
+		pro = (Vec2.dot(Vec2(self.x, self.y), axis) / l) if l > 0 else 1e8
 
 		return {"min" : pro - self.r, "max" : pro + self.r}
 

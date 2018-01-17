@@ -84,6 +84,9 @@ class OpenGLRenderer2D(Object):
 	def drawImage(self, img, aX, aY, aW, aH):
 		imgW, imgH = img.size
 
+		if imgW == 0 or imgH == 0:
+			return
+
 		right, top = aX + aW, aY + aH
 
 		if right > imgW:

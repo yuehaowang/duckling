@@ -94,8 +94,9 @@ class Game(Object):
 	def _enterLoopEvent(self, v):
 		self.stage._enterLoopEvent()
 
-		glutPostRedisplay()
-		glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
+		if self.fps > 0:
+			glutPostRedisplay()
+			glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
 
 	def _enterKeyboardKeyDownEvent(self, key, mouseX, mouseY):
 		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key})
