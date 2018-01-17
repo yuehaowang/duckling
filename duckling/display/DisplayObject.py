@@ -85,4 +85,8 @@ class DisplayObject(EventDispatcher):
 
 	def _drawSelf(self, renderer):
 		pass
+
+	def remove(self):
+		if self.parent != DisplayObject.PARENT_ROOT and self.parent != None:
+			self.parent.removeChild(self)
 		
