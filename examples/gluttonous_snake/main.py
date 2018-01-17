@@ -108,9 +108,9 @@ class GluttonousSnake:
 		for y in range(self.blockNum):
 			for x in range(self.blockNum):
 				if (x, y) in self.snake:
-					self.stageLayer.graphics.drawRect(x * self.blockSize, y * self.blockSize, self.blockSize, self.blockSize, fillStyle=dkl.Color.fromHex("#AAAAAA"))
+					self.stageLayer.graphics.drawRect(x * self.blockSize, y * self.blockSize, self.blockSize, self.blockSize, fillStyle = dkl.Color.fromHex("#AAAAAA"))
 				elif self.target != None and self.target[0] == x and self.target[1] == y:
-					self.stageLayer.graphics.drawRect(x * self.blockSize, y * self.blockSize, self.blockSize, self.blockSize, fillStyle=dkl.Color.fromHex("#FF0000"))
+					self.stageLayer.graphics.drawRect(x * self.blockSize, y * self.blockSize, self.blockSize, self.blockSize, fillStyle = dkl.Color.fromHex("#FF0000"))
 
 	def eatFood(self):
 		self.target = None
@@ -132,18 +132,18 @@ class GluttonousSnake:
 
 	def updateScoreText(self, p):
 		self.score = p
-		self.scoreTex.textureData = dkl.TextureData.fromText("Score: %s" % self.score, size=20)
+		self.scoreTex.textureData = dkl.TextureData.fromText("Score: %s" % self.score, size = 20)
 
 	def gameOver(self):
 		self.playing = False
 		self.isGameOver = True
 
-		titleTextTex = dkl.Texture(dkl.TextureData.fromText("Game Over", size=50))
+		titleTextTex = dkl.Texture(dkl.TextureData.fromText("Game Over", size = 50))
 		titleTextTex.x = (self.game.windowWidth - titleTextTex.getWidth()) / 2
 		titleTextTex.y = 200
 		self.stageLayer.addChild(titleTextTex)
 
-		hintTextTex = dkl.Texture(dkl.TextureData.fromText(">>Press 'ENTER' to restart<<", size=20))
+		hintTextTex = dkl.Texture(dkl.TextureData.fromText(">>Press 'ENTER' to restart<<", size = 20))
 		hintTextTex.x = (self.game.windowWidth - hintTextTex.getWidth()) / 2
 		hintTextTex.y = 140
 		self.stageLayer.addChild(hintTextTex)
