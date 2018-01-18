@@ -76,7 +76,7 @@ class GetFruit:
 
 	def onKeyDown(self, e):
 		if e.data["key"] == dkl.Keyboard.ESC:
-			exit(0)
+			self.game.exit()
 
 		if self.playing:
 			if e.data["key"] == dkl.Keyboard.RIGHT:

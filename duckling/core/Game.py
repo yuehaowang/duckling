@@ -54,6 +54,9 @@ class Game(Object):
 		glutPassiveMotionFunc(self._enterMouseMotionEvent)
 		glutMainLoop()
 
+	def exit(self, code = 0):
+		sys.exit(code)
+
 	def _createWindow(self):
 		glutInitWindowSize(self.windowWidth, self.windowHeight)
 		glutCreateWindow(self.windowTitle.encode("utf-8"))

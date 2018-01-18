@@ -14,7 +14,7 @@ class GameTest:
 
 		def onKeyUp(e):
 			if e.data["key"] == dkl.Keyboard.ESC:
-				exit(0)
+				self.game.exit()
 
 		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_UP, onKeyUp)
 
