@@ -40,6 +40,6 @@ def demoInit():
 	game.stage.addChild(layer3)
 
 if __name__ == "__main__":
-	game = dkl.Game(570, 450, "Sprite Demo")
+	game = dkl.Game(570, 450, "Mouse Event Demo")
 	demoInit()
 	game.run()
