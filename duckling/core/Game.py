@@ -51,6 +51,7 @@ class Game(Object):
 		glutSpecialUpFunc(self._enterKeyboardKeyUpEvent)
 		glutKeyboardUpFunc(self._enterKeyboardKeyUpEvent)
 		glutMouseFunc(self._enterMouseButtonEvent)
+		glutMotionFunc(self._enterMouseMotionEvent)
 		glutPassiveMotionFunc(self._enterMouseMotionEvent)
 		glutMainLoop()
 
