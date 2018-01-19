@@ -6,6 +6,9 @@ import duckling as dkl
 def onClick(e):
 	dkl.log("Click %s" % e.currentTarget.name)
 
+def onMouseMove(e):
+	dkl.log("Mouse moves on %s" % e.currentTarget.name)
+
 def demoInit():
 	# Layer1
 	layer1 = dkl.Sprite()
@@ -33,6 +36,7 @@ def demoInit():
 	layer3.name = "Blue Layer"
 	layer3.graphics.drawRect(0, 0, 150, 150, fillStyle = dkl.Color.fromHex("#00BFFF"), strokeStyle = dkl.Color.fromHex("#4169E1"), lineWidth = 3)
 	layer3.addEventListener(dkl.MouseEvent.MOUSE_DOWN, onClick)
+	layer3.addEventListener(dkl.MouseEvent.MOUSE_MOVE, onMouseMove)
 	game.stage.addChild(layer3)
 
 if __name__ == "__main__":
