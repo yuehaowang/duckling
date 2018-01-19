@@ -3,6 +3,7 @@ import platform
 from PIL import Image as PILImage, ImageFont as PILImageFont, ImageDraw as PILImageDraw
 
 from ..core.Object import Object
+from ..core.utils import Path
 from .Color import Color
 
 
@@ -47,11 +48,10 @@ class TextureData(Object):
 		return TextureData(img.transpose(PILImage.FLIP_TOP_BOTTOM))
 
 	def load(self, path):
-		self.image = PILImage.open(path).convert("RGBA").transpose(PILImage.FLIP_TOP_BOTTOM)
+		self.image = PILImage.open(Path.getAbsPath(path)).convert("RGBA").transpose(PILImage.FLIP_TOP_BOTTOM)
 
 		size = self.image.size
 		if self.width == None or self.width < 0:
 			self.width = size[0]
 		if self.height == None or self.height < 0:
 			self.height = size[1]
-		
