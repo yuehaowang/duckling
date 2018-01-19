@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
+
 '''
 
 This script is used for testing demo and examples under the situation that you modified the code of duckling engine and want to check how it works without re-installing it.
 
 Usage:
-	* Run `./test.py path/to/target`.
+	* Run `./test.py path/to/target` or `python ./test.py path/to/target`.
 	* e.g. If you want to test demo 'hello_world', run `./test.py demo/hello_world` in your terminal.
 
 Note:
@@ -12,7 +14,6 @@ Note:
 
 '''
 
-#! /usr/bin/env python3
 
 import runpy, sys, os, logging
 
