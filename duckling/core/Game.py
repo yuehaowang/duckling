@@ -103,25 +103,25 @@ class Game(Object):
 			glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
 
 	def _enterKeyboardKeyDownEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key})
+		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key": key})
 
 	def _enterKeyboardKeyUpEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key})
+		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key": key})
 
 	def _enterMouseButtonEvent(self, button, state, mouseX, mouseY):
 		eve = {
-			"button" : button,
-			"state" : state,
-			"mouseX" : mouseX,
-			"mouseY" : self.windowHeight - mouseY
+			"button": button,
+			"state": state,
+			"mouseX": mouseX,
+			"mouseY": self.windowHeight - mouseY
 		}
 		
 		self.stage._enterMouseEvent(eve, self.stage.getMatrix())
 
 	def _enterMouseMotionEvent(self, mouseX, mouseY):
 		eve = {
-			"mouseX" : mouseX,
-			"mouseY" : self.windowHeight - mouseY
+			"mouseX": mouseX,
+			"mouseY": self.windowHeight - mouseY
 		}
 
 		self.stage._enterMouseEvent(eve, self.stage.getMatrix())

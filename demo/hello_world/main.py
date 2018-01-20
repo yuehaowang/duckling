@@ -44,8 +44,8 @@ class GameTest:
 
 		loader = dkl.TextureDataLoader()
 		loader.loadList([
-			{"name" : "yaxi_logo", "path" : "./yaxi_logo.png"},
-			{"name" : "avatar", "path" : "./avatar.png"}
+			{"name": "yaxi_logo", "path": "./yaxi_logo.png"},
+			{"name": "avatar", "path": "./avatar.png"}
 		])
 
 		tex1 = dkl.Texture(loader.get("avatar"))

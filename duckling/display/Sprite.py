@@ -84,10 +84,10 @@ class Sprite(DisplayObject):
 				isOn = True
 
 			eveData = {
-				"mouseX" : eve["mouseX"],
-				"mouseY" : eve["mouseY"],
-				"selfX" : eve["mouseX"] - m.c - self.x,
-				"selfY" : eve["mouseY"] - m.f - self.y
+				"mouseX": eve["mouseX"],
+				"mouseY": eve["mouseY"],
+				"selfX": eve["mouseX"] - m.c - self.x,
+				"selfY": eve["mouseY"] - m.f - self.y
 			}
 
 			if "button" in eve and "state" in eve:

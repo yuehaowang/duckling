@@ -60,7 +60,7 @@ class Polygon(Object):
 			if maxi == None or pro > maxi:
 				maxi = pro
 
-		return {"min" : mini, "max" : maxi}
+		return {"min": mini, "max": maxi}
 
 	def getNearestPoint(self, p1):
 		vtx = self.vertices

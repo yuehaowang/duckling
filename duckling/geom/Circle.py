@@ -24,7 +24,7 @@ class Circle(Object):
 		l = axis.length()
 		pro = (Vec2.dot(Vec2(self.x, self.y), axis) / l) if l > 0 else 1e8
 
-		return {"min" : pro - self.r, "max" : pro + self.r}
+		return {"min": pro - self.r, "max": pro + self.r}
 
 	def __str__(self):
 		return "Circle(%s, %s, %s)" % (self.x, self.y, self.r)
