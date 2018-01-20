@@ -10,7 +10,7 @@ def onMouseMove(e):
 	dkl.log("Mouse moves on %s" % e.currentTarget.name)
 
 def demoInit():
-	# Layer1
+	# green layer
 	layer1 = dkl.Sprite()
 	layer1.x = 200
 	layer1.y = 200
@@ -19,7 +19,7 @@ def demoInit():
 	layer1.addEventListener(dkl.MouseEvent.MOUSE_DOWN, onClick)
 	game.stage.addChild(layer1)
 
-	# Layer2
+	# orange layer
 	layer2 = dkl.Sprite()
 	layer2.x = 100
 	layer2.y = 100
@@ -28,7 +28,7 @@ def demoInit():
 	layer2.addEventListener(dkl.MouseEvent.MOUSE_DOWN, onClick)
 	game.stage.addChild(layer2)
 
-	# Layer3
+	# blue layer
 	layer3 = dkl.Sprite()
 	layer3.mouseShelter = False
 	layer3.x = 300

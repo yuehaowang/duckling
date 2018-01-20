@@ -10,7 +10,7 @@ class GameTest:
 		self.game.run()
 
 	def create(self):
-		## Keyboard event test
+		## keyboard event test
 
 		def onKeyUp(e):
 			if e.data["key"] == dkl.Keyboard.ESC:
@@ -19,7 +19,7 @@ class GameTest:
 		self.game.stage.addEventListener(dkl.KeyboardEvent.KEY_UP, onKeyUp)
 
 
-		## Draw shapes: rectangle, circle, triangle
+		## draw shapes: rectangle, circle, triangle
 
 		layer = dkl.Sprite()
 		layer.x = 50
@@ -40,7 +40,7 @@ class GameTest:
 		layer.addEventListener(dkl.MouseEvent.MOUSE_UP, onClick)
 
 
-		## Load and display images
+		## load and display images
 
 		loader = dkl.TextureDataLoader()
 		loader.loadList([
@@ -61,7 +61,7 @@ class GameTest:
 		self.game.stage.addChild(tex2)
 
 
-		## Display text field
+		## display text field
 
 		textTexData = dkl.TextureData.fromText("Hello World! 你好世界！こんにちは世界！", color = dkl.Color.fromHex("#FF0000"), antialiasing = False)
 		textTex = dkl.Texture(textTexData)

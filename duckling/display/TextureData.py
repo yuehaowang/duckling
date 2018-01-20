@@ -43,7 +43,7 @@ class TextureData(Object):
 		imgDraw = PILImageDraw.Draw(img)
 		if not antialiasing:
 			imgDraw.fontmode = "1"
-		imgDraw.text((0, 0), text, font = imgFont, fill=tuple([int(x * 255) for x in color.toList()]))
+		imgDraw.text((0, 0), text, font = imgFont, fill = tuple([int(x * 255) for x in color.toList()]))
 
 		return TextureData(img.transpose(PILImage.FLIP_TOP_BOTTOM))
 
