@@ -1,4 +1,5 @@
-import sys
+import sys, platform as os_platform
+
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -65,7 +66,10 @@ class Game(Object):
 	def _coordinateProjection(self):
 		w, h = self.windowWidth, self.windowHeight
 
-		glViewport(0, 0, w, h)
+		if os_platform.system() == "Windows":
+			glViewport(8, 8, w - 16, h + 36)
+		else:
+			glViewport(0, 0, w, h)
 
 		glMatrixMode(GL_PROJECTION)
 		glLoadIdentity()
