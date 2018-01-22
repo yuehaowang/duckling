@@ -23,7 +23,7 @@ $ git clone https://github.com/yuehaowang/duckling.git
 
 ### 3, Install *duckling*
 
-#### On Windows
+#### On *Windows*
 
 Windows users have to install *PyOpenGL* by yourself before configuring *duckling* since *duckling* is based on it and official *PyOpenGL* package doesn't work satisfyingly on modern Windows. Few steps below will show you how to install an unofficial but suitable *PyOpenGL* package on your Windows. 
 
@@ -31,7 +31,7 @@ First, download a *PyOpenGL* package which is compatible with your python enviro
 
 After the setup of *PyOpenGL*, open *Command Prompt* in 'duckling/' directory and install *duckling* using `python setup.py install`.
 
-#### On Linux/MacOS
+#### On *Linux/MacOS*
 
 It's quite easy for Linux/MacOS users to install *duckling* with the help of 'setup.py' after cloning *duckling* repo:
 
