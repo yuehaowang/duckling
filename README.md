@@ -29,7 +29,7 @@ Windows users have to install *PyOpenGL* by yourself before configuring *ducklin
 
 First, download a *PyOpenGL* package which is compatible with your python environment [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyopengl). Then, install the downloaded '.wheel' file using `pip install /path/to/your_downloaded_file.wheel`.
 
-After the setup of *PyOpenGL*, open *Command Prompt* in 'duckling/' directory and install *duckling* using `python setup.py install`.
+After the setup of *PyOpenGL*, open *Command Prompt*(or *Powershell*) in 'duckling/' directory and install *duckling* using `python setup.py install`.
 
 #### On *Linux/MacOS*
 

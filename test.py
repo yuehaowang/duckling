@@ -6,9 +6,9 @@ This script is used for testing demo and examples under the situation that you m
 
 Usage:
 	* Run `./test.py path/to/target` or `python ./test.py path/to/target`.
-	* e.g. If you want to test demo 'hello_world', run `./test.py demo/hello_world` in your terminal.
+	* e.g. If you want to test demo 'hello_world', type `./test.py demo/hello_world`(or `python ./test.py demo/hello_world`) in your terminal.
 
-Note:
+Notes:
 	* It's feasible to add your own demo or examples for testing.
 	* Each demo or example requires 'main.py' as the program entrance.
 
@@ -23,7 +23,7 @@ import duckling
 dklPath = os.path.split(os.path.abspath(sys.argv[0]))[0]
 
 if len(sys.argv) < 2:
-	print("Missing a parameter.")
+	print("Miss an essential parameter.")
 else:
 	try:
 		os.chdir(os.path.normpath(os.path.join(dklPath, sys.argv[1])))
