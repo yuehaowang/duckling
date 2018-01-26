@@ -1,7 +1,7 @@
 from ..core.Object import Object
 
 
-class Color(object):
+class Color(Object):
 	def __init__(self, r = 0, g = 0, b = 0, a = 1):
 		super(Color, self).__init__()
 
