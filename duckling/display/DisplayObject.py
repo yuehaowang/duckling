@@ -4,6 +4,7 @@ from ..geom.Vec2 import Vec2
 from ..geom.SAT import SAT
 from ..geom.Polygon import Polygon
 from ..geom.Circle import Circle
+from ..geom.Rectangle import Rectangle
 
 
 class DisplayObject(EventDispatcher):
@@ -57,6 +58,9 @@ class DisplayObject(EventDispatcher):
 
 	def getHeight(self):
 		return self._getOriginalHeight() * self.scaleY
+
+	def getBounds(self):
+		return Rectangle(self.left(), self.bottom(), self._getOriginalWidth(), self._getOriginalHeight())
 
 	def _getOriginalWidth(self):
 		return 0

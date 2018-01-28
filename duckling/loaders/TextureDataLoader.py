@@ -40,4 +40,3 @@ class TextureDataLoader(Object):
 			return self._textureDataList[name]
 		except KeyError:
 			return None
-		

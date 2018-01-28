@@ -119,4 +119,6 @@ class OpenGLRenderer2D(Object):
 		glTexCoord2f(lRatio, tRatio)
 		glVertex2f(0, aH)
 		glEnd()
+
+		glDeleteTextures(1, id)
 		

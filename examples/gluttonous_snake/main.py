@@ -45,7 +45,7 @@ class GluttonousSnake:
 		d = e.data
 
 		if d["key"] == dkl.Keyboard.ESC:
-			exit(0)
+			self.game.exit()
 		elif d["key"] == dkl.Keyboard.SPACE:
 			self.playing = not self.playing
 

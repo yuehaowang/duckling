@@ -12,16 +12,16 @@ class GetFruit:
 	def loadRes(self):
 		self.loader = dkl.TextureDataLoader()
 		self.loader.loadList([
-			{"name" : "bg", "path" : "./images/back.jpg"},
-			{"name" : "player", "path" : "./images/player.png"},
-			{"name" : "item0", "path" : "./images/item0.png"},
-			{"name" : "item1", "path" : "./images/item1.png"},
-			{"name" : "item2", "path" : "./images/item2.png"},
-			{"name" : "item3", "path" : "./images/item3.png"},
-			{"name" : "item4", "path" : "./images/item4.png"},
-			{"name" : "item5", "path" : "./images/item5.png"},
-			{"name" : "item6", "path" : "./images/item6.png"},
-			{"name" : "item7", "path" : "./images/item7.png"}
+			{"name": "bg", "path": "./images/back.jpg"},
+			{"name": "player", "path": "./images/player.png"},
+			{"name": "item0", "path": "./images/item0.png"},
+			{"name": "item1", "path": "./images/item1.png"},
+			{"name": "item2", "path": "./images/item2.png"},
+			{"name": "item3", "path": "./images/item3.png"},
+			{"name": "item4", "path": "./images/item4.png"},
+			{"name": "item5", "path": "./images/item5.png"},
+			{"name": "item6", "path": "./images/item6.png"},
+			{"name": "item7", "path": "./images/item7.png"}
 		])
 
 	def create(self):
@@ -76,7 +76,7 @@ class GetFruit:
 
 	def onKeyDown(self, e):
 		if e.data["key"] == dkl.Keyboard.ESC:
-			exit(0)
+			self.game.exit()
 
 		if self.playing:
 			if e.data["key"] == dkl.Keyboard.RIGHT:

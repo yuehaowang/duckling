@@ -1,4 +1,5 @@
-import sys
+import sys, platform as os_platform
+
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -51,8 +52,12 @@ class Game(Object):
 		glutSpecialUpFunc(self._enterKeyboardKeyUpEvent)
 		glutKeyboardUpFunc(self._enterKeyboardKeyUpEvent)
 		glutMouseFunc(self._enterMouseButtonEvent)
+		glutMotionFunc(self._enterMouseMotionEvent)
 		glutPassiveMotionFunc(self._enterMouseMotionEvent)
 		glutMainLoop()
+
+	def exit(self, code = 0):
+		sys.exit(code)
 
 	def _createWindow(self):
 		glutInitWindowSize(self.windowWidth, self.windowHeight)
@@ -61,7 +66,10 @@ class Game(Object):
 	def _coordinateProjection(self):
 		w, h = self.windowWidth, self.windowHeight
 
-		glViewport(0, 0, w, h)
+		if os_platform.system() == "Windows":
+			glViewport(8, 8, w - 16, h + 36)
+		else:
+			glViewport(0, 0, w, h)
 
 		glMatrixMode(GL_PROJECTION)
 		glLoadIdentity()
@@ -99,25 +107,25 @@ class Game(Object):
 			glutTimerFunc(1000 // self.fps, self._enterLoopEvent, 0)
 
 	def _enterKeyboardKeyDownEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key" : key})
+		self.stage.dispatchEvent(KeyboardEvent.KEY_DOWN, {"key": key})
 
 	def _enterKeyboardKeyUpEvent(self, key, mouseX, mouseY):
-		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key" : key})
+		self.stage.dispatchEvent(KeyboardEvent.KEY_UP, {"key": key})
 
 	def _enterMouseButtonEvent(self, button, state, mouseX, mouseY):
 		eve = {
-			"button" : button,
-			"state" : state,
-			"mouseX" : mouseX,
-			"mouseY" : self.windowHeight - mouseY
+			"button": button,
+			"state": state,
+			"mouseX": mouseX,
+			"mouseY": self.windowHeight - mouseY
 		}
 		
 		self.stage._enterMouseEvent(eve, self.stage.getMatrix())
 
 	def _enterMouseMotionEvent(self, mouseX, mouseY):
 		eve = {
-			"mouseX" : mouseX,
-			"mouseY" : self.windowHeight - mouseY
+			"mouseX": mouseX,
+			"mouseY": self.windowHeight - mouseY
 		}
 
 		self.stage._enterMouseEvent(eve, self.stage.getMatrix())

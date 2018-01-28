@@ -2,6 +2,8 @@ from .DisplayObject import DisplayObject
 from .Graphics import Graphics
 from ..events.LoopEvent import LoopEvent
 from ..events.MouseEvent import MouseEvent
+from ..geom.Polygon import Polygon
+from ..geom.SAT import SAT
 
 
 class Sprite(DisplayObject):
@@ -9,8 +11,8 @@ class Sprite(DisplayObject):
 		super(Sprite, self).__init__()
 
 		self._cacheIsMouseOn = False
+		self._shapeList = []
 		self.childList = []
-		self.shapes = []
 		self.mouseEnabled = True
 		self.mouseChildren = True
 		self.mouseShelter = True
@@ -82,10 +84,10 @@ class Sprite(DisplayObject):
 				isOn = True
 
 			eveData = {
-				"mouseX" : eve["mouseX"],
-				"mouseY" : eve["mouseY"],
-				"selfX" : eve["mouseX"] - m.c - self.x,
-				"selfY" : eve["mouseY"] - m.f - self.y
+				"mouseX": eve["mouseX"],
+				"mouseY": eve["mouseY"],
+				"selfX": eve["mouseX"] - m.c - self.x,
+				"selfY": eve["mouseY"] - m.f - self.y
 			}
 
 			if "button" in eve and "state" in eve:
@@ -138,7 +140,24 @@ class Sprite(DisplayObject):
 			child.display(renderer)
 
 	def addShape(self, sh):
-		self.shapes.append(sh)
+		self._shapeList.append(sh)
+
+	def addShapes(self, shList):
+		self._shapeList.extend(shList)
+
+	def getVisualShapes(self):
+		res = []
+
+		for child in self.childList:
+			if isinstance(child, Sprite):
+				res.extend(child.getVisualShapes())
+			else:
+				res.append(Polygon(child.getBounds()))
+
+		for sh in self.graphics._shapeList:
+			res.append(sh)
+
+		return res
 
 	def addChild(self, child):
 		child.parent = self
@@ -158,3 +177,25 @@ class Sprite(DisplayObject):
 		self.removeAllChildren()
 		self.graphics.clear()
 		self.removeAllEventListeners()
+
+	def hitTestObject(self, o):
+		shsList = []
+
+		for tempObj in [self, o]:
+			if len(tempObj._shapeList) > 0:
+				tempLs = tempObj._shapeList
+			else:		
+				tempLs = [Polygon(self.getBounds())]
+
+			rootM = tempObj.getRootMatrix()
+			shsList.append(list(map(lambda o: o.getTransform(rootM), tempLs)))
+
+		for shA in shsList[0]:
+			for shB in shsList[1]:
+				if SAT.hitTest(shA, shB):
+					return True
+
+		return False
+
+			
+
