@@ -55,7 +55,7 @@ $ python demo/hello_world/main.py  # assuming your current working directory is 
 
 ## Documentation
 
-- Online Documentation: http://wyh.wjjsoft.com/docs/duckling/
+- Online Documentation: http://yuehaolab.com/docs/duckling/ *(Updating)*
 
 
 
