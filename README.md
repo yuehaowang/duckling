@@ -1,6 +1,8 @@
 # Duckling
 ----------
 
+<img width="100" height="100" src="https://raw.githubusercontent.com/yuehaowang/duckling/master/logo.svg?sanitize=true" />
+
 An OpenGL based game engine for Python.
 
 
@@ -63,7 +65,7 @@ $ python demo/hello_world/main.py  # assuming your current working directory is 
 
 1. :white_square_button: Implement mouse event, keyboard event and loop event.
 2. :white_medium_square: Implement `TweenLite`.
-3. :white_medium_square: Implement `SAT` for testing collision.
+3. :white_square_button: Implement `SAT` for testing collision.
 4. :white_medium_square: Write a CLI tool for creating project, building project and deploying project.
 
 
